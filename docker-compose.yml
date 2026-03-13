@@ -1,0 +1,76 @@
+services:
+  # ── Ollama LLM Server ────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: docchat-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    # GPU support (uncomment if you have NVIDIA GPU + nvidia-docker)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "cat < /dev/null > /dev/tcp/127.0.0.1/11434 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ── Pull the Mistral model on first run ──────────────────
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: docchat-ollama-pull
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: ["ollama", "pull", "mistral"]
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    restart: "no"
+
+  # ── Streamlit UI ─────────────────────────────────────────
+  streamlit:
+    build: .
+    container_name: docchat-streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./chroma_db:/app/chroma_db
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    command: >
+      streamlit run app.py
+      --server.address 0.0.0.0
+      --server.port 8501
+
+  # ── FastAPI Backend ──────────────────────────────────────
+  api:
+    build: .
+    container_name: docchat-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./chroma_db:/app/chroma_db
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    command: >
+      uvicorn api:app
+      --host 0.0.0.0
+      --port 8000
+
+volumes:
+  ollama_data:
