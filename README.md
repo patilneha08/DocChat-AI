@@ -1,7 +1,17 @@
-# 📄 DocChat AI — Document Q&A Chatbot
+# 📄 DocChat AI - RAG based document AI assist
 
-A **RAG-powered chatbot** that lets you upload documents and ask questions 
+A **RAG-powered document AI assist** that lets you upload documents and ask questions 
 grounded in their content. Built with LangChain, Ollama, ChromaDB, and Streamlit.
+
+## Why this project is useful
+This system helps users interact with large documents through natural language instead of manually searching through pages of content. By using Retrieval-Augmented Generation (RAG), it retrieves relevant context from uploaded documents and generates accurate, context-aware answers.
+
+## Where this system helps
+
+- Research and study: quickly extract answers from notes, PDFs, and reference materials
+- Business documents: query reports, manuals, contracts, and internal knowledge bases
+- Customer support/internal ops: retrieve information from policy docs or FAQs
+- Productivity: save time by avoiding manual document scanning
 
 ## Tech Stack
 
