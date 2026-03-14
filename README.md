@@ -37,7 +37,7 @@ User asks question                                   retrieve
    └──────────┘
 ```
 
-## Quick Start
+## Steps to run
 
 ```bash
 # 1. Clone and set up
