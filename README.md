@@ -1,7 +1,7 @@
 # 📄 DocChat AI - RAG based document AI assist
 
 A **RAG-powered document AI assist** that lets you upload documents and ask questions 
-grounded in their content. Built with LangChain, Ollama, ChromaDB, and Streamlit.
+grounded in their content. Built with LangChain, Ollama, ChromaDB, FastAPI, and Streamlit.
 
 ## Why this project is useful
 This system helps users interact with large documents through natural language instead of manually searching through pages of content. By using Retrieval-Augmented Generation (RAG), it retrieves relevant context from uploaded documents and generates accurate, context-aware answers.
@@ -23,6 +23,7 @@ This system helps users interact with large documents through natural language i
 | Framework     | LangChain                               |
 | UI            | Streamlit                               |
 | Fine-tuning   | QLoRA with PEFT + TRL                  |
+| Backend API   | FastAPI                                |
 
 ## Architecture
 
