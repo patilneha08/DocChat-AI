@@ -51,7 +51,7 @@ User asks question                                   retrieve
 
 ```bash
 # 1. Clone and set up
-git clone https://github.com/YOUR_USERNAME/docchat-ai.git
+git clone https://github.com/patilneha08/DocChat-AI
 cd docchat-ai
 python -m venv venv
 source venv/bin/activate   # Windows: venv\Scripts\activate
