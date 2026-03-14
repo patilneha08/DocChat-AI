@@ -55,18 +55,6 @@ ollama pull mistral
 streamlit run app.py
 ```
 
-## Fine-Tuning (Optional)
-
-```bash
-# Install fine-tuning dependencies
-pip install transformers datasets peft trl bitsandbytes accelerate torch
-
-# Generate training data from your ingested documents
-python finetune/generate_dataset.py <collection_name>
-
-# Run QLoRA fine-tuning
-python finetune/finetune.py
-```
 
 ## Project Structure
 
