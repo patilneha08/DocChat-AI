@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Project data
+uploads/
+chroma_db/
+finetune/dataset.jsonl
+finetune/lora_adapter/
+
+# IDE
+.vscode/
+.idea/
+*.swp
