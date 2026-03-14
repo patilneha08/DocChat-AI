@@ -82,6 +82,3 @@ docchat-ai/
     └── finetune.py         # QLoRA fine-tuning script
 ```
 
-## License
-
-MIT
